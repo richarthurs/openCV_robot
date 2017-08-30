@@ -19,7 +19,6 @@ unsigned char currChar = '\0';
 void serialSendln(const char* stringToSend){
     sciSend(scilinREG, strlen(stringToSend), (unsigned char *)stringToSend);
     sciSend(scilinREG, 2, "\r\n");
-
     sciReceive(scilinREG, 1, &currChar); // place into receive mode
 }
 
@@ -31,12 +30,6 @@ void raSerialInit(){
 }
 
 void sciNotification(sciBASE_t *sci, uint32 flags){
-//        sciSend(scilinREG, 1, (unsigned char *)&currChar);
-
-//        xQueueSendToBackFromISR( rxQueue, &currChar, pdTRUE);
-//        sciReceive(scilinREG, 1, (unsigned char *)&currChar); // place into receive mode
-//        portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
-
         BaseType_t xHigherPriorityTaskWoken = pdFALSE;
         xQueueSendToBackFromISR(rxQueue, &currChar, &xHigherPriorityTaskWoken);
         portYIELD_FROM_ISR(xHigherPriorityTaskWoken);

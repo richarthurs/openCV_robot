@@ -18,9 +18,7 @@
 xTaskHandle xBlinkyTask;
 xTaskHandle xPrinterTask;
 
-QueueHandle_t rxQueue;
-
-
+QueueHandle_t rxQueue; // to receive characters from UART
 
 void raInit(void);
 void vBlinky(void *pvParameters);
