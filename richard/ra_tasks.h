@@ -13,12 +13,18 @@
 #include "FreeRTOS.h"
 #include "os_task.h"
 #include "system.h"
+#include "os_queue.h"
 
 xTaskHandle xBlinkyTask;
+xTaskHandle xPrinterTask;
+
+QueueHandle_t rxQueue;
+
 
 
 void raInit(void);
 void vBlinky(void *pvParameters);
+void vPrinter(void *pvParameters);
 
 
 #endif /* RICHARD_RA_TASKS_H_ */

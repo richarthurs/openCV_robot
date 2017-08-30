@@ -57,6 +57,7 @@
 #include "ra_tasks.h"
 #include "ra_serial.h"
 
+
 xTaskHandle xBlinkyTask;
 
 /* USER CODE END */
@@ -70,7 +71,6 @@ xTaskHandle xBlinkyTask;
 */
 
 /* USER CODE BEGIN (2) */
-
 /* USER CODE END */
 
 int main(void)
@@ -81,6 +81,7 @@ int main(void)
 
     raInit();
     raSerialInit();
+
 
     vTaskStartScheduler();
     while(1);

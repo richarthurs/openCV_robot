@@ -21,6 +21,7 @@ source/sys_main.obj: /Users/Richard/sfusat/workspace/openCV_robot4/include/reg_s
 source/sys_main.obj: /Users/Richard/sfusat/workspace/openCV_robot4/include/reg_flash.h
 source/sys_main.obj: /Users/Richard/sfusat/workspace/openCV_robot4/include/reg_tcram.h
 source/sys_main.obj: /Users/Richard/sfusat/workspace/openCV_robot4/richard/ra_tasks.h
+source/sys_main.obj: /Users/Richard/sfusat/workspace/openCV_robot4/include/os_queue.h
 source/sys_main.obj: /Users/Richard/sfusat/workspace/openCV_robot4/richard/ra_serial.h
 source/sys_main.obj: /Users/Richard/sfusat/workspace/openCV_robot4/include/sci.h
 source/sys_main.obj: /Users/Richard/sfusat/workspace/openCV_robot4/include/reg_sci.h
@@ -46,6 +47,7 @@ source/sys_main.obj: /Users/Richard/sfusat/workspace/openCV_robot4/include/reg_s
 /Users/Richard/sfusat/workspace/openCV_robot4/include/reg_flash.h: 
 /Users/Richard/sfusat/workspace/openCV_robot4/include/reg_tcram.h: 
 /Users/Richard/sfusat/workspace/openCV_robot4/richard/ra_tasks.h: 
+/Users/Richard/sfusat/workspace/openCV_robot4/include/os_queue.h: 
 /Users/Richard/sfusat/workspace/openCV_robot4/richard/ra_serial.h: 
 /Users/Richard/sfusat/workspace/openCV_robot4/include/sci.h: 
 /Users/Richard/sfusat/workspace/openCV_robot4/include/reg_sci.h: 

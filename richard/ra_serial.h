@@ -16,5 +16,8 @@ void sciNotification(sciBASE_t *sci, uint32 flags);
 
 extern unsigned char currChar;
 
+extern BaseType_t xHigherPriorityTaskWoken;
+
+
 
 #endif /* RICHARD_RA_SERIAL_H_ */

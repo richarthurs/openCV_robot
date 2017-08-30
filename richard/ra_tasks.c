@@ -9,19 +9,45 @@
 #include "ra_serial.h"
 
 void raInit(){
+//
+//    if (xTaskCreate(vBlinky,"Blinky", configMINIMAL_STACK_SIZE, NULL, 1, &xBlinkyTask) != pdTRUE){
+//        /* Task could not be created */
+//        while(1);
+//    }
 
-    if (xTaskCreate(vBlinky,"Blinky", configMINIMAL_STACK_SIZE, NULL, 2, &xBlinkyTask) != pdTRUE){
+    if (xTaskCreate(vPrinter,"Printer", 900, NULL, 2, &xPrinterTask) != pdTRUE){
         /* Task could not be created */
         while(1);
     }
+
+    rxQueue = xQueueCreate( 10, sizeof( char*) );
+
 }
 
 
 
 void vBlinky(void *pvParameters){
     for(;;){
-        gioSetBit(gioPORTB, 2, gioGetBit(gioPORTB, 2) ^ 1); // Toggles the A2 bit
-        serialSendln("blink");
+//        gioSetBit(gioPORTB, 2, gioGetBit(gioPORTB, 2) ^ 1); // Toggles the A2 bit
+//        serialSendln("blink");
         vTaskDelay( pdMS_TO_TICKS( 500 ));
+    }
+}
+
+void vPrinter(void *pvParameters){
+    char printme;
+    const TickType_t xTicksToWait = pdMS_TO_TICKS(10);
+
+    for(;;){
+
+
+        while (xQueueReceive(rxQueue, &printme, xTicksToWait) == pdPASS) {
+//            sciSend(scilinREG, 1,printme);
+            gioSetBit(gioPORTB, 2, gioGetBit(gioPORTB, 2) ^ 1); // Toggles the A2 bit
+            serialSendln(&printme);
+//            sciSend(scilinREG, 1, (unsigned char *)printme);
+             sciReceive(scilinREG, 1, &currChar);
+        }
+
     }
 }

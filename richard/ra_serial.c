@@ -12,6 +12,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "ra_tasks.h"
 
 unsigned char currChar = '\0';
 
@@ -30,7 +31,15 @@ void raSerialInit(){
 }
 
 void sciNotification(sciBASE_t *sci, uint32 flags){
-        sciSend(scilinREG, 1, (unsigned char *)&currChar);
+//        sciSend(scilinREG, 1, (unsigned char *)&currChar);
+
+//        xQueueSendToBackFromISR( rxQueue, &currChar, pdTRUE);
+//        sciReceive(scilinREG, 1, (unsigned char *)&currChar); // place into receive mode
+//        portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
+
+        BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+        xQueueSendToBackFromISR(rxQueue, &currChar, &xHigherPriorityTaskWoken);
+        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
         sciReceive(scilinREG, 1, (unsigned char *)&currChar); // place into receive mode
 }
 
